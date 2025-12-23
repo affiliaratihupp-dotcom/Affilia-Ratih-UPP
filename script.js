@@ -1,26 +1,49 @@
+
 const map=L.map('map').setView([-3.2,104.3],7);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+ attribution:'© OpenStreetMap contributors'
+}).addTo(map);
 
-const colors=["#1abc9c","#3498db","#9b59b6","#e74c3c","#f1c40f","#2ecc71","#e67e22"];
-let idx=0;const legendItems={};let kabLayer;
-
-function style(f){
- if(!legendItems[f.properties.kabupaten]) legendItems[f.properties.kabupaten]=colors[idx++%colors.length];
- return{fillColor:legendItems[f.properties.kabupaten],weight:1,color:'white',fillOpacity:0.7};
+function getColor(d){
+ return d>1500?'#800026':
+        d>1000?'#BD0026':
+        d>700?'#E31A1C':
+        d>400?'#FC4E2A':
+        d>200?'#FD8D3C':
+        '#FEB24C';
 }
 
-fetch('data/sumsel_kabupaten.geojson').then(r=>r.json()).then(d=>{
- kabLayer=L.geoJSON(d,{style,onEachFeature:(f,l)=>l.bindPopup(f.properties.kabupaten)}).addTo(map);
- new L.Control.Search({layer:kabLayer,propertyName:'kabupaten',marker:false}).addTo(map);
- const legend=L.control({position:'bottomright'});
- legend.onAdd=function(){
-  const div=L.DomUtil.create('div','legend');div.innerHTML='<b>Kab/Kota</b><br>';
-  for(let k in legendItems) div.innerHTML+=`<i style="background:${legendItems[k]}"></i>${k}<br>`;
-  return div;
+function style(f){
+ return{
+  fillColor:getColor(f.properties.kepadatan),
+  weight:1,
+  color:'white',
+  fillOpacity:0.7
  };
- legend.addTo(map);
+}
+
+fetch('data/sumsel_populasi.geojson')
+.then(r=>r.json())
+.then(d=>{
+ L.geoJSON(d,{
+  style:style,
+  onEachFeature:(f,l)=>{
+   l.bindPopup(`<b>${f.properties.kabupaten}</b><br>
+   Kepadatan: ${f.properties.kepadatan} jiwa/km²`);
+  }
+ }).addTo(map);
 });
 
-fetch('data/ibukota_sumsel.geojson').then(r=>r.json()).then(d=>{
- L.geoJSON(d,{pointToLayer:(f,ll)=>L.marker(ll).bindPopup(f.properties.nama)}).addTo(map);
-});
+const legend=L.control({position:'bottomright'});
+legend.onAdd=function(){
+ const div=L.DomUtil.create('div','legend');
+ div.innerHTML='<b>Kepadatan Penduduk</b><br>'+
+ '<i style="background:#800026"></i>>1500<br>'+
+ '<i style="background:#BD0026"></i>1000–1500<br>'+
+ '<i style="background:#E31A1C"></i>700–1000<br>'+
+ '<i style="background:#FC4E2A"></i>400–700<br>'+
+ '<i style="background:#FD8D3C"></i>200–400<br>'+
+ '<i style="background:#FEB24C"></i><200';
+ return div;
+};
+legend.addTo(map);
