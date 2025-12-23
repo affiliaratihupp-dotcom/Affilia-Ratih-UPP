@@ -2,16 +2,35 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Peta Kepadatan Penduduk Provinsi Sumatera Selatan</title>
+<title>WebGIS Populasi Sumatera Selatan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-<link rel="stylesheet" href="style.css"/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<style>
+body{margin:0}
+#map{height:100vh}
+#sidebar{
+  position:absolute;left:10px;top:10px;width:260px;
+  background:white;padding:15px;border-radius:8px;
+  z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);
+  font-family:Arial
+}
+</style>
 </head>
 <body>
-<div class="header">Peta Kepadatan Penduduk Provinsi Sumatera Selatan</div>
+<div id="sidebar">
+  <h2>Peta Populasi<br>Sumatera Selatan</h2>
+  <p>WebGIS populasi per kabupaten/kota</p>
+</div>
 <div id="map"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
+<script>
+const map = L.map('map').setView([-3.2,104.7],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+fetch('data/sumsel_kabkot.geojson')
+.then(r=>r.json())
+.then(d=>{
+  L.geoJson(d).addTo(map);
+});
+</script>
 </body>
 </html>

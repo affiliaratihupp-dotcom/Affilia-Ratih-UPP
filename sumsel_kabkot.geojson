@@ -1,0 +1,1 @@
+{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"nama": "Kota Palembang", "populasi": 1770000}, "geometry": {"type": "Polygon", "coordinates": [[[104.6, -3.05], [104.9, -3.05], [104.9, -2.85], [104.6, -2.85], [104.6, -3.05]]]}}]}
