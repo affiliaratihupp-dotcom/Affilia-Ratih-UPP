@@ -1,0 +1,7 @@
+{
+"type":"FeatureCollection",
+"features":[
+{"type":"Feature","properties":{"kabupaten":"Palembang"},"geometry":{"type":"Polygon","coordinates":[[[104.7,-2.8],[104.9,-2.8],[104.9,-3.0],[104.7,-3.0],[104.7,-2.8]]]}},
+{"type":"Feature","properties":{"kabupaten":"Ogan Ilir"},"geometry":{"type":"Polygon","coordinates":[[[104.5,-3.1],[104.7,-3.1],[104.7,-3.3],[104.5,-3.3],[104.5,-3.1]]]}},
+{"type":"Feature","properties":{"kabupaten":"Muara Enim"},"geometry":{"type":"Polygon","coordinates":[[[103.7,-3.5],[104.1,-3.5],[104.1,-3.9],[103.7,-3.9],[103.7,-3.5]]]}}]
+}

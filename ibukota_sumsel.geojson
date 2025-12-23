@@ -1,0 +1,6 @@
+{
+"type":"FeatureCollection",
+"features":[
+{"type":"Feature","properties":{"nama":"Palembang"},"geometry":{"type":"Point","coordinates":[104.755,-2.99]}},
+{"type":"Feature","properties":{"nama":"Indralaya"},"geometry":{"type":"Point","coordinates":[104.651,-3.225]}}]
+}
