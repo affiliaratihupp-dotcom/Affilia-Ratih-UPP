@@ -1,0 +1,10 @@
+{
+"type":"FeatureCollection",
+"features":[
+{"type":"Feature","properties":{"nama":"Palembang","kepadatan":1200},
+"geometry":{"type":"Point","coordinates":[104.755,-2.99]}},
+{"type":"Feature","properties":{"nama":"Indralaya","kepadatan":300},
+"geometry":{"type":"Point","coordinates":[104.651,-3.225]}},
+{"type":"Feature","properties":{"nama":"Muara Enim","kepadatan":250},
+"geometry":{"type":"Point","coordinates":[104.087,-3.659]}}]
+}

@@ -1,17 +1,19 @@
 
 body{margin:0;font-family:Arial}
 .header{
- background:#1f4f82;
+ background:#0b3c5d;
  color:white;
- padding:10px;
+ padding:12px;
  text-align:center;
  font-size:18px;
+ font-weight:bold;
 }
 #map{height:90vh;width:100%}
 .legend{
  background:white;
  padding:10px;
  line-height:18px;
+ border-radius:5px;
 }
 .legend i{
  width:18px;
